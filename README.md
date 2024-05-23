@@ -1,2 +1,2 @@
-# Exerc-cios-de-C
+# Exercicios-de-C
 Diversos exercícios de desenvolvimentos de algoritmos em c.
