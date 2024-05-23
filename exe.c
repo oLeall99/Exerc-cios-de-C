@@ -115,7 +115,6 @@ int painelProdutos(){
     int opcao;
     do{
 
-
         printf("\n\033[34m");
         printf("|=======================|\n");
         printf("| Cadastro de Produtos  |\n");
@@ -165,6 +164,191 @@ int painelProdutos(){
             printf("| > Opção inválida, tente novamente...\n");
         }
     }while(opcao != 0);
+
+    return 0;
+}
+
+
+// Multiplicação de Matrizes
+int matriz() {
+    int opcao;
+
+    do {
+        printf("\n\033[34m");
+        printf("|=======================|\n");
+        printf("| Operações Matriciais  |\n");
+        printf("|=======================|\n");
+        printf("| > Opcoes:             |\n");
+        printf("|   1. Multiplicação    |\n");
+        printf("|   0. Sair             |\n");
+        printf("|=======================|\n");
+        printf("| > Opção Desejada: ");
+        scanf("%d", &opcao);
+        clearBuffer();
+
+        if (opcao == 1) {
+            int col1, lin1, col2, lin2;
+
+            printf("| > Quantidade de colunas na 1º Matriz: ");
+            scanf("%d", &col1);
+            clearBuffer();
+
+            printf("| > Quantidade de linhas na 1º Matriz: ");
+            scanf("%d", &lin1);
+            clearBuffer();
+
+            printf("| > Quantidade de colunas na 2º Matriz: ");
+            scanf("%d", &col2);
+            clearBuffer();
+
+            printf("| > Quantidade de linhas na 2º Matriz: ");
+            scanf("%d", &lin2);
+            clearBuffer();
+
+            if (col1 != lin2) {
+                printf("\033[31m");
+                printf("Erro: O número de colunas da 1ª matriz deve ser igual ao número de linhas da 2ª matriz para multiplicação.\n");
+                printf("\n\033[34m");
+                continue;
+            }
+
+            int matriz1[lin1][col1];
+            int matriz2[lin2][col2];
+            int resultado[lin1][col2];
+            int transposta[col2][lin1];
+
+            printf("| > Elementos da 1ª Matriz:\n");
+            for (int i = 0; i < lin1; i++) {
+                for (int j = 0; j < col1; j++) {
+                    printf("| > matriz1[%d][%d] = ", i, j);
+                    scanf("%d", &matriz1[i][j]);
+                }
+            }
+
+            printf("| > Elementos da 2ª Matriz:\n");
+            for (int i = 0; i < lin2; i++) {
+                for (int j = 0; j < col2; j++) {
+                    printf("| > matriz2[%d][%d] = ", i, j);
+                    scanf("%d", &matriz2[i][j]);
+                }
+            }
+
+            multiplyMatrices(lin1, col1, matriz1, lin2, col2, matriz2, resultado);
+            transposeMatrix(lin1, col2, resultado, transposta);
+
+            printf("\nMatriz 1:\n");
+            printMatrix(lin1, col1, matriz1);
+            printf("\nMatriz 2:\n");
+            printMatrix(lin2, col2, matriz2);
+            printf("\nMatriz Resultante (Multiplicação):\n");
+            printMatrix(lin1, col2, resultado);
+            printf("\nMatriz Transposta da Resultante:\n");
+            printMatrix(col2, lin1, transposta);
+        }
+        else if(opcao == 0){
+            printf("| > Voltando para o menu...\n");
+        }
+        else{
+            printf("| > Opção inválida, tente novamente...\n");
+        }
+
+    } while (opcao != 0);
+
+    return 0;
+}
+
+// String em Maiúscula
+int stringUpper(){
+    int opcao;
+
+    do {
+        printf("\n\033[34m");
+        printf("|=======================|\n");
+        printf("|  String em Maiuscula  |\n");
+        printf("|=======================|\n");
+        printf("| > Opcoes:             |\n");
+        printf("|   1. Digitar Frase    |\n");
+        printf("|   0. Sair             |\n");
+        printf("|=======================|\n");
+        printf("| > Opção Desejada: ");
+        scanf("%d", &opcao);
+        clearBuffer();
+
+        if (opcao == 1) {
+           char str[ARRAY_SIZE];
+            printf("| > Frase: ");
+            fgets(str, ARRAY_SIZE, stdin);
+            str[strcspn(str, "\n")] = '\0';
+
+            toUpperCase(str);
+            printf("|> String todoa em maiúscula: \n| > %s\n", str);
+
+        }
+        else if(opcao == 0){
+            printf("| > Voltando para o menu...\n");
+        }
+        else{
+            printf("| > Opção inválida, tente novamente...\n");
+        }
+
+
+    } while (opcao != 0);
+
+    return 0;
+}
+
+// Registro Binário
+int registroBinario(){
+    int opcao;
+    int pos;
+
+    Funcionario funcionarios[ARRAY_SIZE];
+    FILE *f = fopen("funcionarios.bin", "rb");
+    int qtd = fread(funcionarios, ARRAY_SIZE, sizeof(Funcionario), f);
+    qtd = fread(pos, 1, sizeof(int), f);
+    fclose(f);
+     
+
+    printf("\033[32m| > Contatos carregados!!\n");
+    do {
+        printf("\n\033[34m");
+        printf("|=======================|\n");
+        printf("|    Registro Binário   |\n");
+        printf("|=======================|\n");
+        printf("| > Opcoes:             |\n");
+        printf("|   1. Novo Registro    |\n");
+        printf("|   2. Listar Todos     |\n");
+        printf("|   3. Buscar Registro  |\n");
+        printf("|   0. Sair             |\n");
+        printf("|=======================|\n");
+        printf("| > Opção Desejada: ");
+        scanf("%d", &opcao);
+        clearBuffer();
+
+        if (opcao == 1) {
+            Funcionario novoProd;
+
+            printf("| > Nome do produto: ");    
+            fgets(novoProd.nome, NAME_SIZE, stdin);
+            novoProd.nome[strcspn(novoProd.nome, "\n")] = '\0';
+            printf("| > Preço do produto: ");
+            scanf("%d", &novoProd.idade);
+            printf("| > Estoque: ");
+            scanf("%f", &novoProd.salario);
+
+            //estoque[pos] = novoProd;
+            pos++;
+
+        }
+        else if(opcao == 0){
+            printf("| > Voltando para o menu...\n");
+        }
+        else{
+            printf("| > Opção inválida, tente novamente...\n");
+        }
+
+
+    } while (opcao != 0);
 
     return 0;
 }
