@@ -18,10 +18,8 @@ typedef struct {
 typedef struct {
     char nome[NAME_SIZE];
     int idade;
-    float salario;
 
-} Funcionario;
-
+} Pessoa;
 
 // Exercícios:
 
@@ -44,8 +42,10 @@ void printMatrix(int rows, int cols, int matrix[rows][cols]);
 int stringUpper();
 void toUpperCase(char *str);
 
-// 6. Registro binário:
-int registroBinario();
+// 6. Ordernar Array de structs:
+int structOrder();
+int comparaIdade(const void *a, const void *b);
+int comparaNome(const void *a, const void *b);
 
 // Funções auxiliares
 void clearBuffer(); // Limpeza de Buffer

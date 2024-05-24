@@ -298,57 +298,54 @@ int stringUpper(){
 }
 
 // Registro Binário
-int registroBinario(){
+int structOrder(){
+    Pessoa pessoas[] = {
+        {"Arthur", 20},
+        {"Albertini", 19},
+        {"Carlos", 20},
+        {"Beatriz", 35},
+        {"Bianca", 21},
+        {"Marcos", 75},
+        {"Felipe", 17},
+    };
+    int size = sizeof(pessoas) / sizeof(pessoas[0]);
     int opcao;
-    int pos;
+    do{
 
-    Funcionario funcionarios[ARRAY_SIZE];
-    FILE *f = fopen("funcionarios.bin", "rb");
-    int qtd = fread(funcionarios, ARRAY_SIZE, sizeof(Funcionario), f);
-    qtd = fread(pos, 1, sizeof(int), f);
-    fclose(f);
-     
-
-    printf("\033[32m| > Contatos carregados!!\n");
-    do {
         printf("\n\033[34m");
         printf("|=======================|\n");
-        printf("|    Registro Binário   |\n");
+        printf("|    Ordenar Structs    |\n");
         printf("|=======================|\n");
         printf("| > Opcoes:             |\n");
-        printf("|   1. Novo Registro    |\n");
-        printf("|   2. Listar Todos     |\n");
-        printf("|   3. Buscar Registro  |\n");
+        printf("|   1. Listar           |\n");
+        printf("|   2. Ordenar por Nome |\n");
+        printf("|   3. Ordenar por Idade|\n");
         printf("|   0. Sair             |\n");
         printf("|=======================|\n");
         printf("| > Opção Desejada: ");
         scanf("%d", &opcao);
         clearBuffer();
 
-        if (opcao == 1) {
-            Funcionario novoProd;
-
-            printf("| > Nome do produto: ");    
-            fgets(novoProd.nome, NAME_SIZE, stdin);
-            novoProd.nome[strcspn(novoProd.nome, "\n")] = '\0';
-            printf("| > Preço do produto: ");
-            scanf("%d", &novoProd.idade);
-            printf("| > Estoque: ");
-            scanf("%f", &novoProd.salario);
-
-            //estoque[pos] = novoProd;
-            pos++;
-
+        if(opcao == 1){
+            for(int i = 0; i < size; i++){
+                printf("| > Lista:\n");
+                printf("|======================\n");
+                printf("| > Nome: %s\n", pessoas[i].nome);
+                printf("| > Preço: %d\n", pessoas[i].idade);
+            }
         }
-        else if(opcao == 0){
+        else if(opcao == 2){
+            qsort(pessoas, size, sizeof(Pessoa), comparaNome);
+        }
+        else if(opcao == 3){
+            qsort(pessoas, size, sizeof(Pessoa), comparaIdade);
+        }
+                else if(opcao == 0){
             printf("| > Voltando para o menu...\n");
         }
         else{
             printf("| > Opção inválida, tente novamente...\n");
         }
-
-
-    } while (opcao != 0);
-
+    }while(opcao != 0);
     return 0;
 }

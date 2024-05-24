@@ -41,3 +41,18 @@ void toUpperCase(char *str) {
         str++;
     }
 }
+
+
+
+// Exercicio 7 - Ordenação de struct
+int comparaIdade(const void *a, const void *b) {
+    Pessoa *pessoaA = (Pessoa *)a;
+    Pessoa *pessoaB = (Pessoa *)b;
+    return pessoaA->idade - pessoaB->idade;
+}
+
+int comparaNome(const void *a, const void *b) {
+    Pessoa *pessoaA = (Pessoa *)a;
+    Pessoa *pessoaB = (Pessoa *)b;
+    return strcmp(pessoaA->nome, pessoaB->nome);
+}

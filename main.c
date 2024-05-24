@@ -1,6 +1,6 @@
 #include "exe.h"
 
-exe exercicios[] = { somaArray, countVogais, painelProdutos, matriz, stringUpper, registroBinario };
+exe exercicios[] = { somaArray, countVogais, painelProdutos, matriz, stringUpper, structOrder };
 
 int main(){
 
@@ -18,7 +18,7 @@ int main(){
         printf("|  3. Painel de Produtos |\n");
         printf("|  4. Operacao de Matriz |\n");
         printf("|  5. String maiusculas  |\n");
-        printf("|  6. Registro binario   |\n");
+        printf("|  6. Ordenar Structs    |\n");
         printf("|  0. Sair               |\n");
         printf("|========================|\n");
         printf("|Opção Desejada: ");
@@ -30,7 +30,7 @@ int main(){
         if(opcao == -1){
             printf("| > Encerrando...\n");
         }
-        else if(opcao >= 0 && opcao <= 4){
+        else if(opcao >= 0 && opcao <= 5){
             int exe = exercicios[opcao]();
         }
         else{
